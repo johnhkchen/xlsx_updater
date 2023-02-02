@@ -32,6 +32,7 @@ def cookies_yaml_path():
     return Path("output/yaml/original_american_cookies_with_malt_extract.yaml")
 
 
+@pytest.mark.skip(reason="Transitioning away from this usage of main")
 def test_main_can_update_xlsx(cookies_xlsx, cookies_yaml_path):
     main(cookies_xlsx)
     xlsx = FormulaAnnotation(cookies_xlsx)

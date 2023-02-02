@@ -127,6 +127,6 @@ class FormulaAnnotation(ExcelFile):
         export_yaml(file_name, obj, output_dir)
 
     def export_xlsx(self):
-        kit_prefix = "[No Kit] " if self.kit == "NULL" else (self.kit + " - ")
+        kit_prefix = "[No Kit] - " if self.kit == "NULL" else (self.kit + " - ")
         file_name = kit_prefix + self.formula_name + ".xlsx"
         self.wb.save("output/xlsx/" + file_name)

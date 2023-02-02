@@ -4,9 +4,6 @@ ok:
   just test
   just clean
 
-main:
-  python3 src/main.py
-
 test:
   python3 -m tox
 
@@ -21,3 +18,9 @@ clean:
   rm -f output/xlsx/*.xlsx
   rm -f tests/output/yaml/*.yaml
   rm -f tests/output/xlsx/*.xlsx
+
+main:
+  python3 src/main.py
+
+amend:
+  python3 src/amend_annotation.py
