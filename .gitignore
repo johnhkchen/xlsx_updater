@@ -4,3 +4,5 @@ output.txt
 
 __pycache__/
 *.egg-info/
+
+.DS_STORE
