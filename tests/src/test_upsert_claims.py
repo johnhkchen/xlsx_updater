@@ -90,7 +90,8 @@ def test_upsert_splits_along_comma_properly(results):
     assert value[1] == "very tight double coating of silica and dimethicone"
 
 
+@pytest.mark.skip(reason="Feature unused")
 def test_upsert_creates_yaml():
     upsert_claims()
-    yaml_path = Path("output/yaml/claims_cleanup.yaml")
+    yaml_path = Path("output/yaml/claims_cleanup_report.yaml")
     assert yaml_path.exists()

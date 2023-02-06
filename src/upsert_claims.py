@@ -1,9 +1,6 @@
 import csv
 
-from lib.utils import export_yaml
-
 CLAIMS_PATH = "tests/input/csv/claims_mapping.csv"
-YAML_NAME = "claims_cleanup.yaml"
 
 
 def upsert_claims(claims_path=CLAIMS_PATH) -> dict[str, str]:
@@ -18,13 +15,36 @@ def upsert_claims(claims_path=CLAIMS_PATH) -> dict[str, str]:
                 continue
             output[key] = [s.strip() for s in value.split(",")]
 
-        export_yaml(YAML_NAME, output)
         return output
 
 
 if __name__ == "__main__":
-    from pprint import pprint
+    # from pprint import pprint
 
-    obj = upsert_claims()
-    pprint(obj)
-    # print(obj["naturally preserve cosmetic skin-friendly formulations"])
+    lookup_table = upsert_claims()
+    report = {}
+    for k, vs in lookup_table.items():
+        for v in vs:
+            if v not in report:
+                report[v] = {k}
+            report[v].add(k)
+
+    for k, vs in report.items():
+        report[k] = list(vs)
+
+    num_trimmed_claims = len(report.keys())
+    num_raw_claims = 0
+    for _, vs in report.items():
+        num_raw_claims += len(vs)
+
+    print(f"Went from {num_raw_claims} to {num_trimmed_claims} claims.")
+    print(f"Reduction: {100.0*num_trimmed_claims/num_raw_claims:.2f}%")
+
+    # Note if any recursion hapens
+    for k in lookup_table.keys():
+        revisions = lookup_table[k]
+        for revision in revisions:
+            if revision in lookup_table:
+                second_revision = lookup_table[revision][0]
+                if revision != second_revision:
+                    print(f"{k} -> {revision} -> {second_revision}")
