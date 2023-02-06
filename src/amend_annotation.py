@@ -28,6 +28,7 @@ def update_doc_path(xlsx: FormulaAnnotation):
     clean_path = clean_path.replace("\\", "/")
     xlsx.wb["General Information"]["I3"] = clean_path
 
+
 def replace_invalid_hero_inci(xlsx: FormulaAnnotation):
     # INCI should be "NULL"
     incis = xlsx.gets("Hero Ingredients", "B", [])[2:]
@@ -36,6 +37,7 @@ def replace_invalid_hero_inci(xlsx: FormulaAnnotation):
         if inci != "NULL":
             xlsx.wb["Hero Ingredients"][f"B{i+3}"] = "NULL"
 
+
 def replace_invalid_formulation_inci(xlsx: FormulaAnnotation):
     # INCI should be "NULL"
     incis = xlsx.gets("Formulation", "C", [])[2:]
@@ -43,6 +45,7 @@ def replace_invalid_formulation_inci(xlsx: FormulaAnnotation):
     for i, inci in enumerate(incis):
         if inci != "NULL":
             xlsx.wb["Formulation"][f"C{i+3}"] = "NULL"
+
 
 def replace_invalid_inci(xlsx: FormulaAnnotation):
     replace_invalid_hero_inci(xlsx)

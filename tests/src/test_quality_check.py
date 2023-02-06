@@ -1,5 +1,5 @@
 # Quality Check Tests
-# Expected Usage: python3 src/quality_check.py
+# Expected Usage: python3 src/workflows/quality_check.py
 #
 # Log whether annotation files have inconsistent data
 #
@@ -20,7 +20,7 @@ from quality_check import quality_check
 
 @pytest.fixture
 def biscuit_xlsx_path():
-    return "tests/input/[No Kit] Savoury Biscuits with Malt Extract.xlsx"
+    return "tests/input/xlsx/[No Kit] Savoury Biscuits with Malt Extract.xlsx"
 
 
 @pytest.fixture
@@ -36,7 +36,7 @@ def test_quality_check_method_available():
 def test_quality_check_accepts_path(mock_open):
     # quality_check should accept a file and generate a report
     # The report should be a yaml file with a list of errors
-    biscuit_path = "tests/input/[No Kit] Savoury Biscuits with Malt Extract.xlsx"
+    biscuit_path = "tests/input/xlsx/[No Kit] Savoury Biscuits with Malt Extract.xlsx"
     output_path = "tests/output/yaml/"
     expected_report_name = "qc_report_savoury_biscuits_with_malt_extract.yaml"
     expected_report_path = os.path.join(output_path, expected_report_name)
@@ -49,7 +49,7 @@ def test_quality_check_accepts_formula_annotation(mock_open):
     # quality_check should accept a file and generate a report
     # The report should be a yaml file with a list of errors
     biscuit_xlsx = FormulaAnnotation(
-        "tests/input/[No Kit] Savoury Biscuits with Malt Extract.xlsx"
+        "tests/input/xlsx/[No Kit] Savoury Biscuits with Malt Extract.xlsx"
     )
     output_path = "tests/output/yaml/"
     expected_report_name = "qc_report_savoury_biscuits_with_malt_extract.yaml"

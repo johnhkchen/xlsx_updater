@@ -6,7 +6,7 @@ from lib.xlsx import ExcelFile
 @pytest.fixture
 def xlsx():
     return ExcelFile(
-        "tests/input/[No Kit] Original American Cookies with Malt Extract.xlsx"
+        "tests/input/xlsx/[No Kit] Original American Cookies with Malt Extract.xlsx"
     )
 
 

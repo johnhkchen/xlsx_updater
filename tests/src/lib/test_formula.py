@@ -7,7 +7,7 @@ from lib.formula import FormulaAnnotation
 @pytest.fixture
 def cookies_xlsx():
     return FormulaAnnotation(
-        "tests/input/[No Kit] Original American Cookies with Malt Extract.xlsx"
+        "tests/input/xlsx/[No Kit] Original American Cookies with Malt Extract.xlsx"
     )
 
 
@@ -18,7 +18,7 @@ def test_formula_annotation():
 
 
 def test_biscuit_file():
-    p = Path("tests/input/[No Kit] Savoury Biscuits with Malt Extract.xlsx")
+    p = Path("tests/input/xlsx/[No Kit] Savoury Biscuits with Malt Extract.xlsx")
     biscuit_xlsx = FormulaAnnotation(p)
     biscuit_doc_name = "000012067 Univar Food - Recipe Card - Savoury Biscuits with Malt - Q2 2020.pdf"  # noqa: E501
     assert biscuit_xlsx.document_name == biscuit_doc_name
