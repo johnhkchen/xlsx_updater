@@ -24,3 +24,6 @@ main:
 
 amend:
   python3 src/amend_annotation.py
+
+upsert:
+  python3 src/upsert_claims.py
