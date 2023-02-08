@@ -27,3 +27,6 @@ amend:
 
 upsert:
   python3 src/upsert_claims.py
+
+analyze:
+  python3 src/analyze_formulas.py

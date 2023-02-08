@@ -9,7 +9,7 @@ from lib.formula import FormulaAnnotation
 
 @pytest.fixture
 def biscuit_xlsx():
-    return Path("tests/input/[No Kit] Savoury Biscuits with Malt Extract.xlsx")
+    return Path("tests/input/[No Kit] - Savoury Biscuits with Malt Extract.xlsx")
 
 
 @pytest.fixture
@@ -19,7 +19,9 @@ def biscuit_doc():
 
 @pytest.fixture
 def cookies_xlsx():
-    return Path("tests/input/[No Kit] Original American Cookies with Malt Extract.xlsx")
+    return Path(
+        "tests/input/[No Kit] - Original American Cookies with Malt Extract.xlsx"
+    )
 
 
 @pytest.fixture

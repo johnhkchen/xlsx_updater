@@ -97,8 +97,28 @@ class FormulaAnnotation(ExcelFile):
         self.set("General Information", "J3", value)
 
     # ----------------------------
+    # Hero Ingredients
+    # ----------------------------
+
+    @property
+    def hero_trade_names(self):
+        return self.gets("Hero Ingredients", "A", [])[2:]
+
+    @property
+    def hero_inci_names(self):
+        return self.gets("Hero Ingredients", "B", [])[2:]
+
+    # ----------------------------
     # Formulations Page
     # ----------------------------
+    @property
+    def trade_names(self):
+        return self.gets("Formulation", "B", [])[2:]
+
+    @property
+    def inci_names(self):
+        return self.gets("Formulation", "C", [])[2:]
+
     @property
     def weights(self):
         return self.gets("Formulation", "D", [])[2:]
@@ -107,8 +127,6 @@ class FormulaAnnotation(ExcelFile):
     def weights(self, values):
         for i, value in enumerate(values):
             self.set("Formulation", f"D{i+3}", value)
-
-        self.set("General Information", "B3", value)
 
     # Export Methods
 
