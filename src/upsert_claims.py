@@ -1,16 +1,17 @@
 import csv
 
-CLAIMS_PATH = "tests/input/csv/claims_mapping.csv"
+from pprint import pprint
+from collections import Counter
+
+CLAIMS_PATH = "input/tsv/claims_mapping.tsv"
 
 
 def upsert_claims(claims_path=CLAIMS_PATH) -> dict[str, str]:
     output = {}
     with open(claims_path, "r") as claims_csv:
-        reader = csv.reader(claims_csv, delimiter=",")
-        for _ in range(4):
-            next(reader)
-        for row in reader:
-            key, value = row[1], row[2]
+        reader = csv.reader(claims_csv, delimiter="\t")
+
+        for key, value in reader:
             if key == "" or value == "":
                 continue
             output[key] = [s.strip() for s in value.split(",")]
@@ -18,9 +19,7 @@ def upsert_claims(claims_path=CLAIMS_PATH) -> dict[str, str]:
         return output
 
 
-if __name__ == "__main__":
-    # from pprint import pprint
-
+def print_upsert_report():
     lookup_table = upsert_claims()
     report = {}
     for k, vs in lookup_table.items():
@@ -48,3 +47,24 @@ if __name__ == "__main__":
                 second_revision = lookup_table[revision][0]
                 if revision != second_revision:
                     print(f"{k} -> {revision} -> {second_revision}")
+
+
+def tally_claim_phrases():
+    c = Counter()
+    with open(CLAIMS_PATH, "r") as claims_csv:
+        reader = csv.reader(claims_csv, delimiter="\t")
+
+        for _, value in reader:
+            for updated_claim in [s.strip() for s in value.split(",")]:
+                c[updated_claim] += 1
+
+        return c
+
+
+if __name__ == "__main__":
+    # print_upsert_report()
+    count = tally_claim_phrases()
+    del count[""]
+    del count["REMOVE"]
+    results = [(count, phrase) for phrase, count in count.items() if count >= 2]
+    pprint(sorted(results, reverse=True))

@@ -1,9 +1,13 @@
-input_sets/
+input_sets/*
 input/*
 output/*
 output.txt
 
+
+
 __pycache__/
 *.egg-info/
+.ipynb_checkpoints/
+
 
 .DS_STORE

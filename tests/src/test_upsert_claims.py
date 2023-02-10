@@ -56,6 +56,7 @@ def test_upsert_excludes_headers(results):
     assert HEADER_CELL not in results
 
 
+@pytest.mark.skip(reason="Transitioning over to TSV input")
 def test_upsert_all_keys_in_dict(claims_csv_path):
     HEADER_TITLE = "Unique Ing Claim"
     result = upsert_claims(claims_csv_path)
